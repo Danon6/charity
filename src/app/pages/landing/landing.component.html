@@ -1,0 +1,136 @@
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">WhatsApp‑Clone</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#mainNav"
+      aria-controls="mainNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/donation-campaigns">Donation Campaigns</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/blog">Blog</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/chat">Chat</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav> -->
+
+<!-- Hero Section -->
+<section class="landing-hero bg-gradient-to-br from-green-50 to-white py-20 text-center">
+  <div class="container mx-auto px-6">
+    <h1 class="text-4xl md:text-6xl font-bold text-green-700 mb-4">Welcome</h1>
+    <p class="text-gray-700 text-lg max-w-2xl mx-auto mb-8">
+      Connect, chat, share, and donate — all in one seamless experience.
+    </p>
+    <a href="#features" class="inline-block px-6 py-3 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition">
+      Explore Features
+    </a>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-3xl font-semibold text-center text-green-700 mb-12">✨ Key Features</h2>
+    <div class="grid md:grid-cols-3 gap-10 text-center">
+      <div class="p-6 border rounded-lg shadow-sm hover:shadow-md transition">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Real-Time Chat</h3>
+        <p class="text-gray-600">Enjoy smooth and fast real-time conversations with friends and family.</p>
+      </div>
+      <div class="p-6 border rounded-lg shadow-sm hover:shadow-md transition">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Blog Section</h3>
+        <p class="text-gray-600">Stay updated with the latest news, tutorials, and updates from our community.</p>
+      </div>
+      <div class="p-6 border rounded-lg shadow-sm hover:shadow-md transition">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Donation Campaigns</h3>
+        <p class="text-gray-600">Create or support campaigns with transparent progress and updates.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section class="py-20 bg-green-50">
+  <div class="max-w-5xl mx-auto px-6">
+    <h2 class="text-3xl font-semibold text-center text-green-700 mb-12">🚀 How It Works</h2>
+    <div class="space-y-8">
+      <div class="flex flex-col md:flex-row items-start gap-6">
+        <div class="text-5xl text-green-600">1</div>
+        <div>
+          <h4 class="text-xl font-semibold text-gray-800 mb-2">Register & Set Up</h4>
+          <p class="text-gray-600">Sign up in seconds and personalize your profile to start engaging with others.</p>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row items-start gap-6">
+        <div class="text-5xl text-green-600">2</div>
+        <div>
+          <h4 class="text-xl font-semibold text-gray-800 mb-2">Start Chatting or Blogging</h4>
+          <p class="text-gray-600">Join discussions, share thoughts, or launch campaigns directly from your dashboard.</p>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row items-start gap-6">
+        <div class="text-5xl text-green-600">3</div>
+        <div>
+          <h4 class="text-xl font-semibold text-gray-800 mb-2">Make an Impact</h4>
+          <p class="text-gray-600">Raise funds, spread awareness, or just have fun — it's your space!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-donation-campaigns></app-donation-campaigns>
+
+<!-- Testimonials Section -->
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h2 class="text-3xl font-semibold text-green-700 mb-12">💬 What People Say</h2>
+    <div class="grid md:grid-cols-2 gap-10">
+      <div class="border p-6 rounded-lg shadow hover:shadow-md transition">
+        <p class="text-gray-600 italic">“This platform changed the way I manage my donations and communication.”</p>
+        <div class="mt-4 text-sm font-semibold text-green-800">— Sarah B.</div>
+      </div>
+      <div class="border p-6 rounded-lg shadow hover:shadow-md transition">
+        <p class="text-gray-600 italic">“The real-time chat is blazing fast, and the campaign tools are powerful!”</p>
+        <div class="mt-4 text-sm font-semibold text-green-800">— Alex R.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-100 text-gray-600 py-10 mt-10">
+  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+    <div>
+      <h4 class="text-lg font-semibold text-gray-800 mb-3">WhatsApp Clone</h4>
+      <p>A modern communication and campaign platform designed for everyone.</p>
+    </div>
+    <div>
+      <h4 class="text-lg font-semibold text-gray-800 mb-3">Quick Links</h4>
+      <ul class="space-y-2 text-sm">
+        <li><a href="/chat" class="hover:text-green-600">Chat</a></li>
+        <li><a href="/blog" class="hover:text-green-600">Blog</a></li>
+        <li><a href="/campaigns" class="hover:text-green-600">Campaigns</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-lg font-semibold text-gray-800 mb-3">Random Facts</h4>
+      <p>Did you know? The first SMS ever sent was “Merry Christmas” in 1992!</p>
+      <p class="mt-2">We're built with ❤️ and Tailwind CSS.</p>
+    </div>
+  </div>
+  <div class="mt-8 text-center text-sm text-gray-500">© 2025 WhatsApp Clone. All rights reserved.</div>
+</footer>

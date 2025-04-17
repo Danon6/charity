@@ -1,0 +1,8 @@
+<!-- src/app/pages/blog/blog-detail.component.html -->
+<div class="container my-4" *ngIf="post">
+  <h2>{{ post?.title }}</h2>
+  <div class="text-muted mb-3">
+    <small>By {{ post?.authorName }} on {{ post?.publishedDate | date }}</small>
+  </div>
+  <div class="post-content" [innerHTML]="safeContent"></div>
+</div>
