@@ -11,6 +11,9 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
+
+  isNavOpen = false;
+
   constructor(
     public keycloak: KeycloakService,
     private router: Router

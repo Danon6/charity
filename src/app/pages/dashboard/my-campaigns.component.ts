@@ -3,21 +3,32 @@ import { Component, OnInit } from '@angular/core';
 import { CampaignService } from '../../services/services/campaign.service';
 import { Campaign } from '../../services/models/campaign.model';
 import { Router } from '@angular/router';
-import { CurrencyPipe } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-my-campaigns',
   templateUrl: './my-campaigns.component.html',
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe,CommonModule],
 })
 export class MyCampaignsComponent implements OnInit {
   campaigns: Campaign[] = [];
 
-  constructor(private svc: CampaignService, private router: Router) {}
+  constructor(private svc: CampaignService, private router: Router,
+    private http: HttpClient // Inject HttpClient
+
+  ) {}
 
   ngOnInit() {
-    this.svc.getMine().subscribe(list => this.campaigns = list);
-  }
+    this.svc.getMine().subscribe({
+      next: (campaigns) => {
+        console.log('📦 My Campaigns:', campaigns); // ✅ Console log
+        this.campaigns = campaigns;
+      },
+      error: (err) => {
+        console.error('❌ Failed to load campaigns:', err);
+      }
+    });  }
 
   navigateToNewCampaign() {
     this.router.navigate(['dashboard/campaigns/new']);
@@ -32,5 +43,25 @@ export class MyCampaignsComponent implements OnInit {
     this.svc.delete(c.id).subscribe(() =>
       this.campaigns = this.campaigns.filter(x => x.id !== c.id)
     );
+  }
+
+  predictDays(campaign: any) {
+    const apiUrl = 'http://localhost:5000/predict'; // Update if hosted elsewhere
+
+    const payload = {
+      targetAmount: campaign.targetAmount,
+      currentAmount: campaign.currentAmount,
+      // 🔁 Add other required fields used by your model here
+    };
+
+    this.http.post<any>(apiUrl, payload).subscribe({
+      next: (res) => {
+        campaign.predictedDays = Math.round(res.predicted_days_to_target);
+      },
+      error: (err) => {
+        console.error('❌ Prediction failed:', err);
+        alert('Prediction error: ' + err.error?.error || 'Unknown error');
+      }
+    });
   }
 }

@@ -1,20 +1,53 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
-  <div class="container">
-    <a class="navbar-brand" routerLink="/">WhatsApp‑Clone</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="mainNav">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item"><a class="nav-link" routerLink="/campaigns">Campaigns</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/blog">Blog</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/chat">Chat</a></li>
-        <li class="nav-item" *ngIf="keycloak.isTokenValid"><a class="nav-link" routerLink="/dashboard">Dashboard</a></li>
-      </ul>
-      <div class="d-flex">
-        <button *ngIf="!keycloak.isTokenValid" class="btn btn-outline-primary me-2" (click)="keycloak.login()">Login</button>
-        <button *ngIf="keycloak.isTokenValid" class="btn btn-outline-danger" (click)="logout()">Logout</button>
+<nav class="bg-white shadow-md mb-6">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Brand -->
+      <a routerLink="/" class="text-xl font-semibold text-green-700">PI</a>
+
+      <!-- Mobile menu button -->
+      <div class="lg:hidden">
+        <button
+          class="text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+          (click)="isNavOpen = !isNavOpen"
+        >
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
       </div>
+
+      <!-- Navigation Links -->
+      <div class="hidden lg:flex lg:items-center lg:space-x-6">
+        <a routerLink="/campaigns" class="text-gray-700 hover:text-green-600 transition">Campaigns</a>
+        <a routerLink="/blog" class="text-gray-700 hover:text-green-600 transition">Blog</a>
+        <a routerLink="/chat" class="text-gray-700 hover:text-green-600 transition">Chat</a>
+        <a *ngIf="keycloak.isTokenValid" routerLink="/dashboard" class="text-gray-700 hover:text-green-600 transition">Dashboard</a>
+      </div>
+
+      <!-- Auth Buttons -->
+      <div class="hidden lg:flex items-center space-x-2">
+        <button *ngIf="!keycloak.isTokenValid" (click)="keycloak.login()" class="px-4 py-2 border border-green-500 text-green-600 rounded hover:bg-green-50 transition">
+          Login
+        </button>
+        <button *ngIf="keycloak.isTokenValid" (click)="logout()" class="px-4 py-2 border border-red-500 text-red-600 rounded hover:bg-red-50 transition">
+          Logout
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div *ngIf="isNavOpen" class="lg:hidden mt-4 space-y-2">
+      <a routerLink="/campaigns" class="block text-gray-700 hover:text-green-600">Campaigns</a>
+      <a routerLink="/blog" class="block text-gray-700 hover:text-green-600">Blog</a>
+      <a routerLink="/chat" class="block text-gray-700 hover:text-green-600">Chat</a>
+      <a *ngIf="keycloak.isTokenValid" routerLink="/dashboard" class="block text-gray-700 hover:text-green-600">Dashboard</a>
+      <button *ngIf="!keycloak.isTokenValid" (click)="keycloak.login()" class="w-full text-left px-4 py-2 border border-green-500 text-green-600 rounded hover:bg-green-50 transition">
+        Login
+      </button>
+      <button *ngIf="keycloak.isTokenValid" (click)="logout()" class="w-full text-left px-4 py-2 border border-red-500 text-red-600 rounded hover:bg-red-50 transition">
+        Logout
+      </button>
     </div>
   </div>
 </nav>

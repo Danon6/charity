@@ -1,21 +1,25 @@
-<div class="d-flex justify-content-between align-items-center mb-3">
-  <h3>My Campaigns</h3>
-  <button class="btn btn-success" (click)="navigateToNewCampaign()">
-    + New Campaign
-  </button>
-</div>
 <table class="table">
-  <thead><tr><th>Title</th><th>Goal</th><th>Raised</th><th>Actions</th></tr></thead>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Goal</th>
+      <th>Raised</th>
+      <th>Actions</th>
+      <th>Prediction</th>
+    </tr>
+  </thead>
   <tbody>
     <tr *ngFor="let c of campaigns">
       <td>{{ c.title }}</td>
-      <td>{{ c.goal | currency }}</td>
+      <td>{{ c.targetAmount | currency }}</td>
       <td>{{ c.currentAmount | currency }}</td>
       <td>
-        <button class="btn btn-sm btn-primary me-2" (click)="navigateToEditCampaign(c.id)">
-          Edit
-        </button>
-        <button class="btn btn-sm btn-danger" (click)="delete(c)">Delete</button>
+        <button class="btn btn-sm btn-primary me-2" (click)="navigateToEditCampaign(c.id)">Edit</button>
+        <button class="btn btn-sm btn-danger me-2" (click)="delete(c)">Delete</button>
+        <button class="btn btn-sm btn-primary me-2" (click)="predictDays(c)">Predict</button>
+      </td>
+      <td>
+        <span *ngIf="c.predictedDays !== undefined">{{ c.predictedDays }} days</span>
       </td>
     </tr>
   </tbody>

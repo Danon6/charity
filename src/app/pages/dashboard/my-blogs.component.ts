@@ -3,10 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { BlogService } from '../../services/services/blog.service';
 import { BlogPost } from '../../services/models/blog-post.model';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-my-blogs',
   templateUrl: './my-blogs.component.html',
+  imports:[CommonModule]
 })
 export class MyBlogsComponent implements OnInit {
   posts: BlogPost[] = [];

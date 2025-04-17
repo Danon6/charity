@@ -3,12 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, Validators,ReactiveFormsModule } from '@angular/forms';
 import { BlogService } from '../../services/services/blog.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-blog-form',
   templateUrl: './blog-form.component.html',
   imports: [FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,CommonModule
   ],
 })
 export class BlogFormComponent implements OnInit {

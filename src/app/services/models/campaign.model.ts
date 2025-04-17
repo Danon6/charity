@@ -3,8 +3,10 @@ export interface Campaign {
   id: string;
   title: string;
   description: string;
-  goal: number;
+  targetAmount: number;
   currentAmount: number;
   imageUrl?: string;
   active: boolean;
+  predictedDays?: number; // ✅ Add this optional property
+
 }

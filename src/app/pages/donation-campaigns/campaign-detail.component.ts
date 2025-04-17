@@ -45,14 +45,12 @@ export class CampaignDetailComponent implements OnInit, AfterViewInit, OnDestroy
   ) {}
 
   ngOnInit(): void {
-    // 1) Build reactive form
     this.donationForm = this.fb.group({
       amount:     [null, [Validators.required, Validators.min(1)]],
       donorName:  ['', Validators.required],
       donorEmail: ['', [Validators.required, Validators.email]]
     });
-
-    // 2) Load campaign & check for ?donated=true
+  
     this.sub = this.route.paramMap.pipe(
       switchMap(params => {
         this.justDonated = this.route.snapshot.queryParamMap.get('donated') === 'true';
@@ -61,14 +59,46 @@ export class CampaignDetailComponent implements OnInit, AfterViewInit, OnDestroy
     ).subscribe({
       next: c => {
         this.campaign = c;
-        this.loading  = false;
+        this.loading = false;
+  
+        // ✅ Wait for DOM render, then mount Stripe
+        setTimeout(() => this.initStripeCard(), 0);
       },
       error: () => {
         this.errorMsg = 'Could not load campaign';
-        this.loading  = false;
+        this.loading = false;
       }
     });
   }
+  private initStripeCard() {
+    console.log('🌀 Initializing Stripe...');
+    loadStripe(environment.stripePublicKey).then(stripe => {
+      if (!stripe) {
+        console.error('❌ Stripe failed to load');
+        this.errorMsg = 'Unable to load Stripe.';
+        return;
+      }
+  
+      this.stripe = stripe;
+      const elements = this.stripe.elements();
+      this.card = elements.create('card', {
+        style: {
+          base: {
+            fontSize: '16px',
+            color: '#32325d',
+            '::placeholder': { color: '#a0aec0' }
+          }
+        }
+      });
+  
+      this.card.mount(this.cardInfo.nativeElement);
+      console.log('✅ Stripe card mounted');
+    }).catch(err => {
+      console.error('❌ Stripe init error:', err);
+      this.errorMsg = 'Stripe initialization failed.';
+    });
+  }
+    
 
   ngAfterViewInit(): void {
     // 3) Initialize Stripe and mount the Card Element

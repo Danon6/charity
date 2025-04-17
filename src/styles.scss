@@ -3,6 +3,7 @@
 @import "@fortawesome/fontawesome-free/css/all.min.css";
 @import '@ctrl/ngx-emoji-mart/picker';
 
+@import "tailwindcss";
 
 * {
   margin: 0;
@@ -12,11 +13,11 @@
 }
 
 body {
-  background-color: #ccc;
+  background-color: #ffffff;
 }
 
 .gray-bg {
-  background-color: #f0f2f5;
+  background-color: #ffffff;
 }
 
 .cursor-pointer {

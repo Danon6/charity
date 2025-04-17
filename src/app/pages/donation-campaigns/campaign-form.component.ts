@@ -3,12 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
 import { CampaignService } from '../../services/services/campaign.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-campaign-form',
   templateUrl: './campaign-form.component.html',
   styleUrls: ['./campaign-detail.component.scss'],
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,CommonModule],
 })
 export class CampaignFormComponent implements OnInit {
   form!: FormGroup;
@@ -28,7 +29,7 @@ export class CampaignFormComponent implements OnInit {
     this.form = this.fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
-      goal: [null, [Validators.required, Validators.min(1)]],
+      targetAmount: [null, [Validators.required, Validators.min(1)]],
       imageUrl: ['']
     });
 
